@@ -1,0 +1,199 @@
+<center>
+	<h1 id="header">Section 2: Teaching</h1>
+</center>
+<br>
+<div class="well well-lg" style="padding-top: 5px !important;">
+	<form class="form-horizontal section2" role="form">
+		<div class="form-group">
+			<h3>Courses taught
+				<small class="text-muted">Include all courses taught or co-taught by members of your unit.</small>
+				<small class="text-muted">For each item, list: course name; semester (Spring/Fall); level (bachelor/master/PhD); approximate number of students.</small>
+			</h3>
+		</div>
+		<hr>
+		<div class="form-group">
+			<div class="parent">
+				<div class="child id labels"><span class="glyphicon glyphicon-exclamation-sign"></span></div>
+				<div class="child id labels"><span>ID</span></div>
+				<div class="child labels"><span>Course</span></div>
+				<div class="child labels"><span>Semester</span></div>
+				<div class="child labels"><span>Degree</span></div>
+				<div class="child labels"><span>Number of students</span></div>
+				<label class="btn nocursor"><span class="glyphicon glyphicon-trash"></span></label>
+			</div>
+			<div class="parent" data-ng-repeat="choice in forms.courses">
+				<button class="btn nocursor id" ng-class="'btn-'+(validity[6]?'success':'danger')">
+					<span ng-class="'glyphicon '+('glyphicon-'+(validity[6]?'ok':'remove'))">
+					{{checkValidity(6, check(choice)&&isNumber(choice.conumber))}}
+					</span>
+				</button>
+				<div class="child id labels"><span>{{choice.id}}</span></div>
+				<div class="child">
+					<input id="coname" type="text" ng-model="choice.coname" class="form-control" name="coname" placeholder="Software architecture">
+				</div>
+				<div class="child">
+					<input id="cosemester" type="text" ng-model="choice.cosemester" class="form-control" name="cosemester" placeholder="Spring">
+				</div>
+				<div class="child">
+					<input id="codegree" type="text" ng-model="choice.codegree" class="form-control" name="codegree" placeholder="Bachelor">
+				</div>
+				<div class="child last-child">
+					<input id="conumber" type="number" min="0" ng-model="choice.conumber" class="form-control" name="conumber" placeholder="23">
+				</div>
+				<button class="btn btn-danger" ng-disabled="choice.id==1" ng-click="removeCo(choice.id)"><span class="glyphicon glyphicon-trash"></span></button>
+			</div>
+			<button class="btn btn-success pull-right" ng-click="addCo()"><span class="glyphicon glyphicon-plus"></span></button>
+		</div>
+		<hr>
+		<div class="form-group">
+			<h3>Examinations
+				<small class="text-muted">Include all examinations administered or co-administered by members of your unit.</small>
+				<small class="text-muted">For each item, list: course name; semester (Spring/Fall); kind of exam (final/repetition); approximate number of students taking the exam.</small>
+			</h3>
+		</div>
+		<hr>
+		<div class="form-group">
+			<div class="parent">
+				<div class="child id labels"><span class="glyphicon glyphicon-exclamation-sign"></span></div>
+				<div class="child id labels"><span>ID</span></div>
+				<div class="child labels"><span>Course</span></div>
+				<div class="child labels"><span>Semester</span></div>
+				<div class="child labels"><span>Kind of exam</span></div>
+				<div class="child labels"><span>Number of students</span></div>
+				<label class="btn nocursor"><span class="glyphicon glyphicon-trash"></span></label>
+			</div>
+			<div class="parent" data-ng-repeat="choice in forms.examinations">
+				<button class="btn nocursor id" ng-class="'btn-'+(validity[7]?'success':'danger')">
+					<span ng-class="'glyphicon '+('glyphicon-'+(validity[7]?'ok':'remove'))">
+					{{checkValidity(7, check(choice)&&isNumber(choice.exnumber))}}
+					</span>
+				</button>
+				<div class="child id labels"><span>{{choice.id}}</span></div>
+				<div class="child">
+					<input id="exname" type="text" ng-model="choice.exname" class="form-control" name="exname" placeholder="Software architecture">
+				</div>
+				<div class="child">
+					<input id="exsemester" type="text" ng-model="choice.exsemester" class="form-control" name="exsemester" placeholder="Spring">
+				</div>
+				<div class="child">
+					<input id="exkind" type="text" ng-model="choice.exkind" class="form-control" name="exkind" placeholder="Final">
+				</div>
+				<div class="child last-child">
+					<input id="exnumber" type="number" min="0" ng-model="choice.exnumber" class="form-control" name="exnumber" placeholder="23">
+				</div>
+				<button class="btn btn-danger" ng-disabled="choice.id==1" ng-click="removeEx(choice.id)"><span class="glyphicon glyphicon-trash"></span></button>
+			</div>
+			<button class="btn btn-success pull-right" ng-click="addEx()"><span class="glyphicon glyphicon-plus"></span></button>
+		</div>
+		<hr>
+		<div class="form-group">
+			<h3>Students supervised
+				<small class="text-muted">For each student, indicate student's name and nature of work, e.g. bachelor thesis/master thesis/summer internship.</small>
+			</h3>
+		</div>
+		<hr>
+		<div class="form-group">
+			<div class="parent">
+				<div class="child id labels"><span class="glyphicon glyphicon-exclamation-sign"></span></div>
+				<div class="child id labels"><span>ID</span></div>
+				<div class="child labels"><span>Student</span></div>
+				<div class="child labels"><span>Nature of work</span></div>
+				<label class="btn nocursor"><span class="glyphicon glyphicon-trash"></span></label>
+			</div>
+			<div class="parent" data-ng-repeat="choice in forms.revised">
+				<button class="btn nocursor id" ng-class="'btn-'+(validity[8]?'success':'danger')">
+					<span ng-class="'glyphicon '+('glyphicon-'+(validity[8]?'ok':'remove'))">{{checkValidity(8, check(choice))}}</span>
+				</button>
+				<div class="child id labels"><span>{{choice.id}}</span></div>
+				<div class="child">
+					<input id="revname" type="text" ng-model="choice.revname" class="form-control" name="revname" placeholder="Vasya Pupkin">
+				</div>
+				<div class="child last-child">
+					<input id="revnature" type="text" ng-model="choice.revnature" class="form-control" name="revnature" placeholder="Summer internship">
+				</div>
+				<button class="btn btn-danger" ng-disabled="choice.id==1" ng-click="removeRev(choice.id)"><span class="glyphicon glyphicon-trash"></span></button>
+			</div>
+			<button class="btn btn-success pull-right" ng-click="addRev()"><span class="glyphicon glyphicon-plus"></span></button>
+		</div>
+		<hr>
+		<div class="form-group">
+			<h3>Completed student reports
+				<small class="text-muted">For each report, indicate student's name, title of report, as well as publication plans if any.</small>
+			</h3>
+		</div>
+		<hr>
+		<div class="form-group">
+			<div class="parent">
+				<div class="child id labels"><span class="glyphicon glyphicon-exclamation-sign"></span></div>
+				<div class="child id labels"><span>ID</span></div>
+				<div class="child labels"><span>Student</span></div>
+				<div class="child labels"><span>Title</span></div>
+				<div class="child labels"><span>Publication plans</span></div>
+				<label class="btn nocursor"><span class="glyphicon glyphicon-trash"></span></label>
+			</div>
+			<div class="parent" data-ng-repeat="choice in forms.reports">
+				<button class="btn nocursor id" ng-class="'btn-'+(validity[9]?'success':'danger')">
+					<span ng-class="'glyphicon '+('glyphicon-'+(validity[9]?'ok':'remove'))">{{checkValidity(9, check(choice))}}</span>
+				</button>
+				<div class="child id labels"><span>{{choice.id}}</span></div>
+				<div class="child">
+					<input id="repname" type="text" ng-model="choice.repname" class="form-control" name="repname" placeholder="Vasya Pupkin">
+				</div>
+				<div class="child">
+					<input id="reptitle" type="text" ng-model="choice.reptitle" class="form-control" name="reptitle" placeholder="Vasya Pupkin Report">
+				</div>
+				<div class="child last-child">
+					<input id="repplans" type="text" ng-model="choice.repplans" class="form-control" name="repplans" placeholder="None">
+				</div>
+				<button class="btn btn-danger" ng-disabled="choice.id==1" ng-click="removeRep(choice.id)"><span class="glyphicon glyphicon-trash"></span></button>
+			</div>
+			<button class="btn btn-success pull-right" ng-click="addRep()"><span class="glyphicon glyphicon-plus"></span></button>
+		</div>
+		<hr>
+		<div class="form-group">
+			<h3>Completed PhD theses
+				<small class="text-muted">For each thesis, indicate student's name, degree (e.g. PhD/Dr.Sc.), supervisor's name, other committee members' names, degree-granting institution's name (Innopolis/other), title of dissertation.</small>
+			</h3>
+		</div>
+		<hr>
+		<div class="form-group">
+			<div class="parent">
+				<div class="child id labels"><span class="glyphicon glyphicon-exclamation-sign"></span></div>
+				<div class="child id labels"><span>ID</span></div>
+				<div class="child labels"><span>Student</span></div>
+				<div class="child labels"><span>Degree</span></div>
+				<div class="child labels"><span>Supervisor</span></div>
+				<div class="child labels"><span>Committee members</span></div>
+				<div class="child labels"><span>Institution</span></div>
+				<div class="child labels"><span>Title</span></div>
+				<label class="btn nocursor"><span class="glyphicon glyphicon-trash"></span></label>
+			</div>
+			<div class="parent" data-ng-repeat="choice in forms.theses">
+				<button class="btn nocursor id" ng-class="'btn-'+(validity[10]?'success':'danger')">
+					<span ng-class="'glyphicon '+('glyphicon-'+(validity[10]?'ok':'remove'))">{{checkValidity(10, check(choice))}}</span>
+				</button>
+				<div class="child id labels"><span>{{choice.id}}</span></div>
+				<div class="child">
+					<input id="thename" type="text" ng-model="choice.thename" class="form-control" name="thename" placeholder="Vasya Pupkin">
+				</div>
+				<div class="child">
+					<input id="thedegree" type="text" ng-model="choice.thedegree" class="form-control" name="thedegree" placeholder="PhD">
+				</div>
+				<div class="child">
+					<input id="thesupervisor" type="text" ng-model="choice.thesupervisor" class="form-control" name="thesupervisor" placeholder="Vasya's teacher">
+				</div>
+				<div class="child">
+					<input id="thecommittee" type="text" ng-model="choice.thecommittee" class="form-control" name="thecommittee" placeholder="Vasya's teachers">
+				</div>
+				<div class="child">
+					<input id="theinstitution" type="text" ng-model="choice.theinstitution" class="form-control" name="theinstitution" placeholder="Vasya University">
+				</div>
+				<div class="child last-child">
+					<input id="thetitle" type="text" ng-model="choice.thetitle" class="form-control" name="thetitle" placeholder="Vasya Pupkin Thesis">
+				</div>
+				<button class="btn btn-danger" ng-disabled="choice.id==1" ng-click="removeThe(choice.id)"><span class="glyphicon glyphicon-trash"></span></button>
+			</div>
+			<button class="btn btn-success pull-right" ng-click="addThe()"><span class="glyphicon glyphicon-plus"></span></button>
+		</div>
+	</form>
+</div>

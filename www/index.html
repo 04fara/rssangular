@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html ng-app="rssApp">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>RSS</title>
+	<link rel="stylesheet" href="files/css/bootstrap.css">
+	<link rel="stylesheet" href="files/css/bootstrap-datetimepicker.css">
+	<link rel="stylesheet" href="files/css/style.css">
+	<script type="text/javascript" src="files/js/jquery.js"></script>
+	<script type="text/javascript" src="files/js/angular.js"></script>
+	<script type="text/javascript" src="files/js/angular-route.js"></script>
+	<script type="text/javascript" src="files/js/bootstrap.js"></script>
+	<script type="text/javascript" src="files/js/moment.js"></script>
+	<script type="text/javascript" src="files/js/transition.js"></script>
+	<script type="text/javascript" src="files/js/collapse.js"></script>
+	<script type="text/javascript" src="files/js/bootstrap-datetimepicker.js"></script>
+	<script type="text/javascript" src="files/js/angular-eonasdan-datetimepicker.js"></script>
+	<script type="text/javascript" src="files/js/script.js"></script>
+	<script type="text/javascript">
+		angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));
+	</script>
+</head>
+
+<body ng-controller="NavigationController">
+	<nav class="navbar navbar-default navbar-fixed-top" ng-hide="states.activeItem==0">
+		<div class="container">
+			<div class="navbar-header hover">
+				<a class="navbar-brand text-hide" href="main">RSS</a>
+				<button ng-hide="states.activeItem<=0" type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div ng-hide="states.activeItem<=0" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<h4 class="dropdown-header" style="color: black; font-weight: bold;">SECTIONS</h4>
+					<li ng-repeat="section in sections" class="section" ng-class="{'active':section.id==states.activeItem}" ng-click="states.activeItem=section.id">
+						<a ng-href="{{section.href}}">{{section.title}}</a>
+					</li>
+				</ul>
+				<br>
+			</div>
+		</div>
+	</nav>
+	<br>
+	<div ng-hide="states.activeItem<=0" class="container">
+		<div class="progress">
+			<div class="progress-bar progress-bar-striped active" role="progressbar" ng-style="{width: (states.activeItem/7*100)-12.5+'%'}">
+			</div>
+			<span style="position: absolute; display: inline; left: 48.3%; color: black;">{{states.activeItem<8?states.activeItem+'/7':'Done'}}</span>
+		</div>
+	</div>
+	<div class="container" ng-view ng-controller="DataController">
+	</div>
+	<div ng-hide="states.activeItem<=0" class="container">
+		<a class="btn btn-success btn-lg pull-left" ng-hide="states.activeItem<=1" ng-href="{{'section'+(states.activeItem-1)}}">Previous</a>
+		<a ng-disabled="states.activeItem==8&&validity.indexOf(false)!=-1" class="btn btn-success btn-lg pull-right" ng-click="states.activeItem==8?(validity.indexOf(false)!=-1||postData()):''" ng-href="{{states.activeItem==8?(validity.indexOf(false)!=-1?'':'main'):states.activeItem==7?'overall':('section'+(states.activeItem+1))}}">{{states.activeItem==8?'Submit':states.activeItem==7?'Overall':'Next'}}</a>
+	</div>
+	<nav ng-hide="states.activeItem<=0" class="navbar navbar-default navbar-fixed-bottom hidden-xs hidden-sm hidden-md">
+		<div class="container navbar-center">
+			<div>
+				<nav aria-label="Page navigation">
+					<ul class="pagination pagination-lg">
+						<li ng-class="{disabled:states.activeItem<=1||states.activeItem>8}" ng-click="states.activeItem<=1||states.activeItem>8||(states.activeItem=states.activeItem-1)">
+							<a ng-href="{{sections[states.activeItem-1].href}}" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+							</a>
+						</li>
+						<li ng-repeat="section in sections" class="section" ng-class="{'active': section.id == states.activeItem}" ng-click="states.activeItem=section.id">
+							<a ng-href="{{section.href}}">{{section.title}}</a>
+						</li>
+						<li ng-class="{disabled:states.activeItem<1||states.activeItem>=8}" ng-click="states.activeItem<1||states.activeItem>=8||(states.activeItem=states.activeItem+1)">
+							<a ng-href="{{sections[states.activeItem-1].href}}" aria-label="Next">
+								<span aria-hidden="true">&raquo;</span>
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</nav>
+</body>
+
+</html>

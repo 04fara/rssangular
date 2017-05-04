@@ -1,0 +1,292 @@
+<center>
+	<h1 id="header">Administrator page</h1>
+</center>
+<br>
+<div class="well well-lg">
+	<form class="form-horizontal" role="form">
+		<div class="form-group">
+			<div class="row" style="display: flex; align-items: center;">
+				<div class="col-xs-4">
+					<div class="dropdown">
+						<button class="btn btn-default dropdown-toggle" style="white-space:no-wrap; width:100%; overflow-x: hidden;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+							<div class="spandiv">
+								<span>{{states.activeQuery>0?queries[states.activeQuery-1].title:'Select option'}}</span>
+							</div>
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu">
+							<li ng-repeat="q in queries" ng-class="{'active':q.id==states.activeQuery}" ng-click="states.activeQuery=q.id;query.query=q.id;resetQueryParams();">
+								<a>{{q.title}}</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-xs-2" style="margin-right: 40px;">
+					<div ng-hide="states.activeQuery!=2&&states.activeQuery!=3&&states.activeQuery!=7" class="input-group" style="width: 200px;">
+						<div class="dropdown">
+							<button class="btn btn-default dropdown-toggle" style="white-space:no-wrap; width:100%; overflow-x: hidden;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+								<div class="spandiv">
+									<span>{{states.activeLab!=''?states.activeLab:'Select laboratory'}}</span>
+								</div>
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu">
+								<li ng-repeat="lab in labs" ng-class="{'active':lab==states.activeLab}" ng-click="states.activeLab=lab;query.params.lab=lab">
+									<a>{{lab}}</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-2">
+					<div class="input-group">
+						<span ng-hide="states.activeQuery!=2&&states.activeQuery!=4&&states.activeQuery!=7" class="input-group-addon">From</span>
+						<input ng-hide="states.activeQuery!=2&&states.activeQuery!=4&&states.activeQuery!=7" type="number" min="1960" name="startdate" ng-model="query.params.startdate" id="startdate" class="form-control" placeholder="1960">
+					</div>
+				</div>
+				<div class="col-xs-2">
+					<div class="input-group">
+						<span ng-hide="states.activeQuery!=2&&states.activeQuery!=4&&states.activeQuery!=7" class="input-group-addon">To</span>
+						<input ng-hide="states.activeQuery!=2&&states.activeQuery!=4&&states.activeQuery!=7" type="number" min="{{query.params.startdate+1}}" name="enddate" ng-model="query.params.enddate" id="enddate" class="form-control" placeholder="1961">
+					</div>
+				</div>
+				<div class="col-xs-2">
+					<a ng-disabled="!checkAdmin()" class="btn btn-success btn-lg pull-right" ng-click="!checkAdmin()||getData()">GET</a>
+				</div>
+			</div>
+		</div>
+		<hr>
+		<div ng-show="response.hasOwnProperty('data')&&!(response.data.values.length>0||response.data.conf.values.length>0||response.data.jour.values.length>0||response.data.forms.values.length>0)" style="margin-top: 100px; margin-bottom: 100px;">
+			<center>
+				<span class="label label-danger" style="font-size: 40px;">Nothing found!</span>
+			</center>
+		</div>
+		<div ng-show="response.data.values.length>0||response.data.conf.values.length>0||response.data.jour.values.length>0||response.data.forms.values.length>0">
+			<center>
+				<h2><b>RESULTS</b></h2>
+			</center>
+			<div class="form-group" ng-hide="!response.data.hasOwnProperty('labels')||response.data.hasOwnProperty('conf')">
+				<div class="parent">
+					<div class="child id labels"><span>ID</span></div>
+					<div class="child labels" data-ng-repeat="choice in response.data.labels"><span>{{choice}}</span></div>
+				</div>
+				<div class="parent" data-ng-repeat="choice1 in response.data.values">
+					<div class="child id labels"><span>{{$index + 1}}</span></div>
+					<div class="child values spandiv" data-ng-repeat="choice in choice1"><span>{{choice}}</span></div>
+				</div>
+			</div>
+			<div class="form-group" ng-hide="(query.query!=3&&query.query!=4)||!response.data.hasOwnProperty('conf')">
+				<center>
+					<h3 ng-hide="">Conference</h3>
+				</center>
+				<div class="parent">
+					<div class="child id labels"><span>ID</span></div>
+					<div class="child labels" data-ng-repeat="choice in response.data.conf.labels"><span>{{choice}}</span></div>
+				</div>
+				<div class="parent" data-ng-repeat="choice1 in response.data.conf.values">
+					<div class="child id labels"><span>{{$index + 1}}</span></div>
+					<div class="child values spandiv" data-ng-repeat="choice in choice1 track by $index"><span>{{choice}}</span></div>
+				</div>
+				<center>
+					<h3>Journal</h3>
+				</center>
+				<div class="parent">
+					<div class="child id labels"><span>ID</span></div>
+					<div class="child labels" data-ng-repeat="choice in response.data.jour.labels"><span>{{choice}}</span></div>
+				</div>
+				<div class="parent" data-ng-repeat="choice1 in response.data.jour.values">
+					<div class="child id labels"><span>{{$index + 1}}</span></div>
+					<div class="child values spandiv" data-ng-repeat="choice in choice1 track by $index"><span>{{choice}}</span></div>
+				</div>
+			</div>
+			<div class="form-group" ng-hide="(query.query!=2)||!response.data.hasOwnProperty('forms')">
+				<center>
+					<h3 ng-hide="">General Information</h3>
+				</center>
+				<div class="parent">
+					<div class="child id labels"><span>ID</span></div>
+					<div class="child labels" data-ng-repeat="choice in response.data.forms.labels"><span>{{choice}}</span></div>
+				</div>
+				<div class="parent" data-ng-repeat="choice1 in response.data.forms.values">
+					<div class="child id labels"><span>{{$index + 1}}</span></div>
+					<div class="child values spandiv" data-ng-repeat="choice in choice1 track by $index"><span>{{choice}}</span></div>
+				</div>
+				<center>
+					<h3>Courses</h3>
+				</center>
+				<div class="parent">
+					<div class="child id labels"><span>ID</span></div>
+					<div class="child labels" data-ng-repeat="choice in response.data.courses.labels"><span>{{choice}}</span></div>
+				</div>
+				<div class="parent" data-ng-repeat="choice1 in response.data.courses.values">
+					<div class="child id labels"><span>{{$index + 1}}</span></div>
+					<div class="child values spandiv" data-ng-repeat="choice in choice1 track by $index"><span>{{choice}}</span></div>
+				</div>
+				<center>
+					<h3>Examinations</h3>
+				</center>
+				<div class="parent">
+					<div class="child id labels"><span>ID</span></div>
+					<div class="child labels" data-ng-repeat="choice1 in response.data.examinations.labels"><span>{{choice}}</span></div>
+				</div>
+				<div class="parent" data-ng-repeat="choice1 in response.data.examinations.values">
+					<div class="child id labels"><span>{{$index + 1}}</span></div>
+					<div class="child values spandiv" data-ng-repeat="choice in choice1 track by $index"><span>{{choice}}</span></div>
+				</div>
+				<center>
+					<h3>Students supervised</h3>
+				</center>
+				<div class="parent">
+					<div class="child id labels"><span>ID</span></div>
+					<div class="child labels" data-ng-repeat="choice1 in response.data.revised.labels"><span>{{choice}}</span></div>
+				</div>
+				<div class="parent" data-ng-repeat="choice1 in response.data.revised.values">
+					<div class="child id labels"><span>{{$index + 1}}</span></div>
+					<div class="child values spandiv" data-ng-repeat="choice in choice1 track by $index"><span>{{choice}}</span></div>
+				</div>
+				<center>
+					<h3>Completed student reports</h3>
+				</center>
+				<div class="parent">
+					<div class="child id labels"><span>ID</span></div>
+					<div class="child labels" data-ng-repeat="choice in response.data.reports.labels"><span>{{choice}}</span></div>
+				</div>
+				<div class="parent" data-ng-repeat="choice1 in response.data.reports.values">
+					<div class="child id labels"><span>{{$index + 1}}</span></div>
+					<div class="child values spandiv" data-ng-repeat="choice in choice1 track by $index"><span>{{choice}}</span></div>
+				</div>
+				<center>
+					<h3>Completed PhD theses</h3>
+				</center>
+				<div class="parent">
+					<div class="child id labels"><span>ID</span></div>
+					<div class="child labels" data-ng-repeat="choice in response.data.theses.labels"><span>{{choice}}</span></div>
+				</div>
+				<div class="parent" data-ng-repeat="choice1 in response.data.theses.values">
+					<div class="child id labels"><span>{{$index + 1}}</span></div>
+					<div class="child values spandiv" data-ng-repeat="choice in choice1 track by $index"><span>{{choice}}</span></div>
+				</div>
+				<center>
+					<h3>Grants</h3>
+				</center>
+				<div class="parent">
+					<div class="child id labels"><span>ID</span></div>
+					<div class="child labels" data-ng-repeat="choice in response.data.grants.labels"><span>{{choice}}</span></div>
+				</div>
+				<div class="parent" data-ng-repeat="choice1 in response.data.grants.values">
+					<div class="child id labels"><span>{{$index + 1}}</span></div>
+					<div class="child values spandiv" data-ng-repeat="choice in choice1 track by $index"><span>{{choice}}</span></div>
+				</div>
+				<center>
+					<h3>Research projects</h3>
+				</center>
+				<div class="parent">
+					<div class="child id labels"><span>ID</span></div>
+					<div class="child labels" data-ng-repeat="choice in response.data.rprojects.labels"><span>{{choice}}</span></div>
+				</div>
+				<div class="parent" data-ng-repeat="choice1 in response.data.rprojects.values">
+					<div class="child id labels"><span>{{$index + 1}}</span></div>
+					<div class="child values spandiv" data-ng-repeat="choice in choice1 track by $index"><span>{{choice}}</span></div>
+				</div>
+				<center>
+					<h3>Research collaborations</h3>
+				</center>
+				<div class="parent">
+					<div class="child id labels"><span>ID</span></div>
+					<div class="child labels" data-ng-repeat="choice in response.data.rcollab.labels"><span>{{choice}}</span></div>
+				</div>
+				<div class="parent" data-ng-repeat="choice1 in response.data.rcollab.values">
+					<div class="child id labels"><span>{{$index + 1}}</span></div>
+					<div class="child values spandiv" data-ng-repeat="choice in choice1 track by $index"><span>{{choice}}</span></div>
+				</div>
+				<center>
+					<h3>Conference publications</h3>
+				</center>
+				<div class="parent">
+					<div class="child id labels"><span>ID</span></div>
+					<div class="child labels" data-ng-repeat="choice in response.data.conference.labels"><span>{{choice}}</span></div>
+				</div>
+				<div class="parent" data-ng-repeat="choice1 in response.data.conference.values">
+					<div class="child id labels"><span>{{$index + 1}}</span></div>
+					<div class="child values spandiv" data-ng-repeat="choice in choice1 track by $index"><span>{{choice}}</span></div>
+				</div>
+				<center>
+					<h3>Journal publications</h3>
+				</center>
+				<div class="parent">
+					<div class="child id labels"><span>ID</span></div>
+					<div class="child labels" data-ng-repeat="choice in response.data.journal.labels"><span>{{choice}}</span></div>
+				</div>
+				<div class="parent" data-ng-repeat="choice1 in response.data.journal.values">
+					<div class="child id labels"><span>{{$index + 1}}</span></div>
+					<div class="child values spandiv" data-ng-repeat="choice in choice1 track by $index"><span>{{choice}}</span></div>
+				</div>
+				<center>
+					<h3>Best paper awards</h3>
+				</center>
+				<div class="parent">
+					<div class="child id labels"><span>ID</span></div>
+					<div class="child labels" data-ng-repeat="choice in response.data.awards.labels"><span>{{choice}}</span></div>
+				</div>
+				<div class="parent" data-ng-repeat="choice1 in response.data.awards.values">
+					<div class="child id labels"><span>{{$index + 1}}</span></div>
+					<div class="child values spandiv" data-ng-repeat="choice in choice1 track by $index"><span>{{choice}}</span></div>
+				</div>
+				<center>
+					<h3>Memberships</h3>
+				</center>
+				<div class="parent">
+					<div class="child id labels"><span>ID</span></div>
+					<div class="child labels" data-ng-repeat="choice in response.data.member.labels"><span>{{choice}}</span></div>
+				</div>
+				<div class="parent" data-ng-repeat="choice1 in response.data.member.values">
+					<div class="child id labels"><span>{{$index + 1}}</span></div>
+					<div class="child values spandiv" data-ng-repeat="choice in choice1 track by $index"><span>{{choice}}</span></div>
+				</div>
+				<center>
+					<h3>Prizes</h3>
+				</center>
+				<div class="parent">
+					<div class="child id labels"><span>ID</span></div>
+					<div class="child labels" data-ng-repeat="choice in response.data.prizes.labels"><span>{{choice}}</span></div>
+				</div>
+				<div class="parent" data-ng-repeat="choice1 in response.data.prizes.values">
+					<div class="child id labels"><span>{{$index + 1}}</span></div>
+					<div class="child values spandiv" data-ng-repeat="choice in choice1 track by $index"><span>{{choice}}</span></div>
+				</div>
+				<center>
+					<h3>Industry collaborations</h3>
+				</center>
+				<div class="parent">
+					<div class="child id labels"><span>ID</span></div>
+					<div class="child labels" data-ng-repeat="choice in response.data.icollab.labels"><span>{{choice}}</span></div>
+				</div>
+				<div class="parent" data-ng-repeat="choice1 in response.data.icollab.values">
+					<div class="child id labels"><span>{{$index + 1}}</span></div>
+					<div class="child values spandiv" data-ng-repeat="choice in choice1 track by $index"><span>{{choice}}</span></div>
+				</div>
+				<center>
+					<h3>Patents</h3>
+				</center>
+				<div class="parent" data-ng-repeat="choice1 in response.data.patents.values">
+					<div class="child id labels"><span>{{$index + 1}}</span></div>
+					<div class="child values spandiv" data-ng-repeat="choice in choice1 track by $index"><span>{{choice}}</span></div>
+				</div>
+				<center>
+					<h3>IP licensing</h3>
+				</center>
+				<div class="parent" data-ng-repeat="choice1 in response.data.licensing.values">
+					<div class="child id labels"><span>{{$index + 1}}</span></div>
+					<div class="child values spandiv" data-ng-repeat="choice in choice1 track by $index"><span>{{choice}}</span></div>
+				</div>
+				<center>
+					<h3>Additional</h3>
+				</center>
+				<div class="parent" data-ng-repeat="choice1 in response.data.additional.values">
+					<div class="child id labels"><span>{{$index + 1}}</span></div>
+					<div class="child values spandiv" data-ng-repeat="choice in choice1 track by $index"><span>{{choice}}</span></div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

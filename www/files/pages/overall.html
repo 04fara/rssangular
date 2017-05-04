@@ -1,0 +1,386 @@
+<center>
+	<h1 id="header">Report Submitting System (RSS)</h1>
+</center>
+<br>
+<div class="well well-lg">
+	<form class="form-horizontal section2" role="form">
+		<div class="form-group">
+			<center>
+				<h2><u>Section 1: General Information</u></h2>
+			</center>
+			<div class="parent">
+				<div class="child labels"><span>Name of Unit</span></div>
+				<div class="child labels"><span>Head</span></div>
+				<div class="child labels"><span>Innopolis email of Head</span></div>
+				<div class="child labels"><span>Personal email of Head</span></div>
+				<div class="child labels"><span>From</span></div>
+				<div class="child labels"><span>To</span></div>
+			</div>
+			<div class="parent">
+				<div class="child values spandiv"><span class="empty">{{forms.unitname}}</span></div>
+				<div class="child values spandiv"><span class="empty">{{forms.unithead}}</span></div>
+				<div class="child values spandiv"><span class="empty">{{forms.innomail}}</span></div>
+				<div class="child values spandiv"><span class="empty">{{forms.mail}}</span></div>
+				<div class="child values spandiv"><span class="empty">{{forms.startdate}}</span></div>
+				<div class="child values spandiv"><span class="empty">{{forms.enddate}}</span></div>
+			</div>
+			<div class="parent">
+				<div class="child labels">
+					<span class="label labels" ng-class="'label-'+(validity[0]?'success':'danger')">
+						<span ng-class="'glyphicon '+('glyphicon-'+(validity[0]?'ok':'remove'))"></span>
+					</span>
+				</div>
+				<div class="child labels">
+					<span class="label labels" ng-class="'label-'+(validity[1]?'success':'danger')">
+						<span ng-class="'glyphicon '+('glyphicon-'+(validity[1]?'ok':'remove'))"></span>
+					</span>
+				</div>
+				<div class="child labels">
+					<span class="label labels" ng-class="'label-'+(validity[2]?'success':'danger')">
+						<span ng-class="'glyphicon '+('glyphicon-'+(validity[2]?'ok':'remove'))"></span>
+					</span>
+				</div>
+				<div class="child labels">
+					<span class="label labels" ng-class="'label-'+(validity[3]?'success':'danger')">
+						<span ng-class="'glyphicon '+('glyphicon-'+(validity[3]?'ok':'remove'))"></span>
+					</span>
+				</div>
+				<div class="child labels">
+					<span class="label labels" ng-class="'label-'+(validity[4]?'success':'danger')">
+						<span ng-class="'glyphicon '+('glyphicon-'+(validity[4]?'ok':'remove'))"></span>
+					</span>
+				</div>
+				<div class="child labels">
+					<span class="label labels" ng-class="'label-'+(validity[5]?'success':'danger')">
+						<span ng-class="'glyphicon '+('glyphicon-'+(validity[5]?'ok':'remove'))"></span>
+					</span>
+				</div>
+			</div>
+		</div>
+		<hr>
+		<div class="form-group">
+			<center>
+				<h2><u>Section 2: Teaching</u></h2>
+				<h3>Courses taught</h3>
+			</center>
+			<div class="parent">
+				<div class="child id labels"><span class="glyphicon glyphicon-exclamation-sign"></span></div>
+				<div class="child id labels"><span>ID</span></div>
+				<div class="child labels"><span>Course</span></div>
+				<div class="child labels"><span>Semester</span></div>
+				<div class="child labels"><span>Degree</span></div>
+				<div class="child labels"><span>Number of students</span></div>
+			</div>
+			<div class="parent" data-ng-repeat="choice in forms.courses">
+				<button class="btn nocursor id" ng-class="'btn-'+(validity[6]?'success':'danger')">
+					<span ng-class="'glyphicon '+('glyphicon-'+(validity[6]?'ok':'remove'))"></span>
+				</button>
+				<div class="child id labels"><span>{{choice.id}}</span></div>
+				<div class="child values spandiv"><span>{{choice.coname}}</span></div>
+				<div class="child values spandiv"><span>{{choice.cosemester}}</span></div>
+				<div class="child values spandiv"><span>{{choice.codegree}}</span></div>
+				<div class="child values spandiv"><span>{{choice.conumber}}</span></div>
+			</div>
+			<center>
+				<h3>Examinations</h3>
+			</center>
+			<div class="parent">
+				<div class="child id labels"><span class="glyphicon glyphicon-exclamation-sign"></span></div>
+				<div class="child id labels"><span>ID</span></div>
+				<div class="child labels"><span>Course</span></div>
+				<div class="child labels"><span>Semester</span></div>
+				<div class="child labels"><span>Kind of exam</span></div>
+				<div class="child labels"><span>Number of students</span></div>
+			</div>
+			<div class="parent" data-ng-repeat="choice in forms.examinations">
+				<button class="btn nocursor id" ng-class="'btn-'+(validity[7]?'success':'danger')">
+					<span ng-class="'glyphicon '+('glyphicon-'+(validity[7]?'ok':'remove'))"></span>
+				</button>
+				<div class="child id labels"><span>{{choice.id}}</span></div>
+				<div class="child values spandiv"><span>{{choice.exname}}</span></div>
+				<div class="child values spandiv"><span>{{choice.exsemester}}</span></div>
+				<div class="child values spandiv"><span>{{choice.exkind}}</span></div>
+				<div class="child values spandiv"><span>{{choice.exnumber}}</span></div>
+			</div>
+			<center>
+				<h3>Students supervised</h3>
+			</center>
+			<div class="parent">
+				<div class="child id labels"><span class="glyphicon glyphicon-exclamation-sign"></span></div>
+				<div class="child id labels"><span>ID</span></div>
+				<div class="child labels"><span>Student</span></div>
+				<div class="child labels"><span>Nature of work</span></div>
+			</div>
+			<div class="parent" data-ng-repeat="choice in forms.revised">
+				<button class="btn nocursor id" ng-class="'btn-'+(validity[8]?'success':'danger')">
+					<span ng-class="'glyphicon '+('glyphicon-'+(validity[8]?'ok':'remove'))"></span>
+				</button>
+				<div class="child id labels"><span>{{choice.id}}</span></div>
+				<div class="child values spandiv"><span>{{choice.revname}}</span></div>
+				<div class="child values spandiv"><span>{{choice.revnature}}</span></div>
+			</div>
+			<center>
+				<h3>Completed student reports</h3>
+			</center>
+			<div class="parent">
+				<div class="child id labels"><span class="glyphicon glyphicon-exclamation-sign"></span></div>
+				<div class="child id labels"><span>ID</span></div>
+				<div class="child labels"><span>Student</span></div>
+				<div class="child labels"><span>Title</span></div>
+				<div class="child labels"><span>Publication plans</span></div>
+			</div>
+			<div class="parent" data-ng-repeat="choice in forms.reports">
+				<button class="btn nocursor id" ng-class="'btn-'+(validity[9]?'success':'danger')">
+					<span ng-class="'glyphicon '+('glyphicon-'+(validity[9]?'ok':'remove'))"></span>
+				</button>
+				<div class="child id labels"><span>{{choice.id}}</span></div>
+				<div class="child values spandiv"><span>{{choice.repname}}</span></div>
+				<div class="child values spandiv"><span>{{choice.reptitle}}</span></div>
+				<div class="child values spandiv"><span>{{choice.repplans}}</span></div>
+			</div>
+			<center>
+				<h3>Completed PhD theses</h3>
+			</center>
+			<div class="parent">
+				<div class="child id labels"><span class="glyphicon glyphicon-exclamation-sign"></span></div>
+				<div class="child id labels"><span>ID</span></div>
+				<div class="child labels"><span>Student</span></div>
+				<div class="child labels"><span>Degree</span></div>
+				<div class="child labels"><span>Supervisor</span></div>
+				<div class="child labels"><span>Committee members</span></div>
+				<div class="child labels"><span>Institution</span></div>
+				<div class="child labels"><span>Title</span></div>
+			</div>
+			<div class="parent" data-ng-repeat="choice in forms.theses">
+				<button class="btn nocursor id" ng-class="'btn-'+(validity[10]?'success':'danger')">
+					<span ng-class="'glyphicon '+('glyphicon-'+(validity[10]?'ok':'remove'))"></span>
+				</button>
+				<div class="child id labels"><span>{{choice.id}}</span></div>
+				<div class="child values spandiv"><span>{{choice.thename}}</span></div>
+				<div class="child values spandiv"><span>{{choice.thedegree}}</span></div>
+				<div class="child values spandiv"><span>{{choice.thesupervisor}}</span></div>
+				<div class="child values spandiv"><span>{{choice.thecommittee}}</span></div>
+				<div class="child values spandiv"><span>{{choice.theinstitution}}</span></div>
+				<div class="child values spandiv"><span>{{choice.thetitle}}</span></div>
+			</div>
+		</div>
+		<hr>
+		<div class="form-group">
+			<center>
+				<h2><u>Section 3: Research</u></h2>
+				<h3>Grants</h3>
+			</center>
+			<div class="parent">
+				<div class="child id labels"><span class="glyphicon glyphicon-exclamation-sign"></span></div>
+				<div class="child id labels"><span>ID</span></div>
+				<div class="child labels"><span>Title</span></div>
+				<div class="child labels"><span>Granting agency</span></div>
+				<div class="child labels"><span>Period</span></div>
+				<div class="child labels"><span>Amount</span></div>
+			</div>
+			<div class="parent" data-ng-repeat="choice in forms.grants">
+				<button class="btn nocursor id" ng-class="'btn-'+(validity[11]?'success':'danger')">
+					<span ng-class="'glyphicon '+('glyphicon-'+(validity[11]?'ok':'remove'))"></span>
+				</button>
+				<div class="child id labels"><span>{{choice.id}}</span></div>
+				<div class="child values spandiv"><span>{{choice.gratitle}}</span></div>
+				<div class="child values spandiv"><span>{{choice.graagency}}</span></div>
+				<div class="child values spandiv"><span>{{choice.graperiod}}</span></div>
+				<div class="child values spandiv"><span>{{choice.graamount}}</span></div>
+			</div>
+			<center>
+				<h3>Research projects</h3>
+			</center>
+			<div class="parent">
+				<div class="child id labels"><span class="glyphicon glyphicon-exclamation-sign"></span></div>
+				<div class="child id labels"><span>ID</span></div>
+				<div class="child labels"><span>Title</span></div>
+				<div class="child labels"><span>IU personnel</span></div>
+				<div class="child labels"><span>External personnel</span></div>
+				<div class="child labels"><span>Start date</span></div>
+				<div class="child labels"><span>End date</span></div>
+				<div class="child labels"><span>Financing</span></div>
+			</div>
+			<div class="parent" data-ng-repeat="choice in forms.rprojects">
+				<button class="btn nocursor id" ng-class="'btn-'+(validity[12]?'success':'danger')">
+					<span ng-class="'glyphicon '+('glyphicon-'+(validity[12]?'ok':'remove'))"></span>
+				</button>
+				<div class="child id labels"><span>{{choice.id}}</span></div>
+				<div class="child values spandiv"><span>{{choice.rptitle}}</span></div>
+				<div class="child values spandiv"><span>{{choice.rpinno}}</span></div>
+				<div class="child values spandiv"><span>{{choice.rpext}}</span></div>
+				<div class="child values spandiv"><span>{{choice.rpstart}}</span></div>
+				<div class="child values spandiv"><span>{{choice.rpend}}</span></div>
+				<div class="child values spandiv"><span>{{choice.rpinvest}}</span></div>
+			</div>
+			<center>
+				<h3>Research collaborations</h3>
+			</center>
+			<div class="parent">
+				<div class="child id labels"><span class="glyphicon glyphicon-exclamation-sign"></span></div>
+				<div class="child id labels"><span>ID</span></div>
+				<div class="child labels"><span>Country</span></div>
+				<div class="child labels"><span>Institution</span></div>
+				<div class="child labels"><span>Principal</span></div>
+				<div class="child labels"><span>Nature of collaboration</span></div>
+			</div>
+			<div class="parent" data-ng-repeat="choice in forms.rcollab">
+				<button class="btn nocursor id" ng-class="'btn-'+(validity[13]?'success':'danger')">
+					<span ng-class="'glyphicon '+('glyphicon-'+(validity[13]?'ok':'remove'))"></span>
+				</button>
+				<div class="child id labels"><span>{{choice.id}}</span></div>
+				<div class="child values spandiv"><span>{{choice.rccountry}}</span></div>
+				<div class="child values spandiv"><span>{{choice.rcinstitution}}</span></div>
+				<div class="child values spandiv"><span>{{choice.rcprincipal}}</span></div>
+				<div class="child values spandiv"><span>{{choice.rcnature}}</span></div>
+			</div>
+			<center>
+				<h3>Conference publications</h3>
+			</center>
+			<div class="parent">
+				<div class="child id labels"><span class="glyphicon glyphicon-exclamation-sign"></span></div>
+				<div class="child id labels"><span>ID</span></div>
+				<div class="child labels"><span>Country</span></div>
+				<div class="child labels"><span>Institution</span></div>
+			</div>
+			<div class="parent" data-ng-repeat="choice in forms.conference">
+				<button class="btn nocursor id" ng-class="'btn-'+(validity[14]?'success':'danger')">
+					<span ng-class="'glyphicon '+('glyphicon-'+(validity[14]?'ok':'remove'))"></span>
+				</button>
+				<div class="child id labels"><span>{{choice.id}}</span></div>
+				<div class="child values spandiv"><span>{{choice.confauthor}}</span></div>
+				<div class="child values spandiv"><span>{{choice.confpubl}}</span></div>
+			</div>
+			<center>
+				<h3>Journal publications</h3>
+			</center>
+			<div class="parent">
+				<div class="child id labels"><span class="glyphicon glyphicon-exclamation-sign"></span></div>
+				<div class="child id labels"><span>ID</span></div>
+				<div class="child labels"><span>Country</span></div>
+				<div class="child labels"><span>Institution</span></div>
+			</div>
+			<div class="parent" data-ng-repeat="choice in forms.journal">
+				<button class="btn nocursor id" ng-class="'btn-'+(validity[15]?'success':'danger')">
+					<span ng-class="'glyphicon '+('glyphicon-'+(validity[15]?'ok':'remove'))"></span>
+				</button>
+				<div class="child id labels"><span>{{choice.id}}</span></div>
+				<div class="child values spandiv"><span>{{choice.jauthor}}</span></div>
+				<div class="child values spandiv"><span>{{choice.jpubl}}</span></div>
+			</div>
+		</div>
+		<hr>
+		<div class="form-group">
+			<center>
+				<h2><u>Section 4: Technology transfer</u></h2>
+				<h3>Patents</h3>
+			</center>
+			<div class="parent">
+				<div class="child values spandiv"><span class="empty">{{forms.patents}}</span></div>
+			</div>
+			<center>
+				<h3>IP licensing (software or others)</h3>
+			</center>
+			<div class="parent">
+				<div class="child values spandiv"><span class="empty">{{forms.licensing}}</span></div>
+			</div>
+		</div>
+		<hr>
+		<div class="form-group">
+			<center>
+				<h2><u>Section 5: Achievements</u></h2>
+				<h3>Best paper awards</h3>
+			</center>
+			<div class="parent">
+				<div class="child id labels"><span class="glyphicon glyphicon-exclamation-sign"></span></div>
+				<div class="child id labels"><span>ID</span></div>
+				<div class="child labels"><span>Authors</span></div>
+				<div class="child labels"><span>Title</span></div>
+				<div class="child labels"><span>Awarding association</span></div>
+				<div class="child labels"><span>Award's exact wording</span></div>
+				<div class="child labels"><span>Date</span></div>
+			</div>
+			<div class="parent" data-ng-repeat="choice in forms.awards">
+				<button class="btn nocursor id" ng-class="'btn-'+(validity[16]?'success':'danger')">
+					<span ng-class="'glyphicon '+('glyphicon-'+(validity[16]?'ok':'remove'))"></span>
+				</button>
+				<div class="child id labels"><span>{{choice.id}}</span></div>
+				<div class="child values spandiv"><span>{{choice.awauthor}}</span></div>
+				<div class="child values spandiv"><span>{{choice.awtitle}}</span></div>
+				<div class="child values spandiv"><span>{{choice.awassoc}}</span></div>
+				<div class="child values spandiv"><span>{{choice.awwording}}</span></div>
+				<div class="child values spandiv"><span>{{choice.awdate}}</span></div>
+			</div>
+			<center>
+				<h3>Memberships</h3>
+			</center>
+			<div class="parent">
+				<div class="child id labels"><span class="glyphicon glyphicon-exclamation-sign"></span></div>
+				<div class="child id labels"><span>ID</span></div>
+				<div class="child labels"><span>Name</span></div>
+				<div class="child labels"><span>Date</span></div>
+			</div>
+			<div class="parent" data-ng-repeat="choice in forms.member">
+				<button class="btn nocursor id" ng-class="'btn-'+(validity[17]?'success':'danger')">
+					<span ng-class="'glyphicon '+('glyphicon-'+(validity[17]?'ok':'remove'))"></span>
+				</button>
+				<div class="child id labels"><span>{{choice.id}}</span></div>
+				<div class="child values spandiv"><span>{{choice.memname}}</span></div>
+				<div class="child values spandiv"><span>{{choice.memdate}}</span></div>
+			</div>
+			<center>
+				<h3>Prizes</h3>
+			</center>
+			<div class="parent">
+				<div class="child id labels"><span class="glyphicon glyphicon-exclamation-sign"></span></div>
+				<div class="child id labels"><span>ID</span></div>
+				<div class="child labels"><span>Recipient</span></div>
+				<div class="child labels"><span>Prize</span></div>
+				<div class="child labels"><span>Institution</span></div>
+				<div class="child labels"><span>Date</span></div>
+			</div>
+			<div class="parent" data-ng-repeat="choice in forms.prizes">
+				<button class="btn nocursor id" ng-class="'btn-'+(validity[18]?'success':'danger')">
+					<span ng-class="'glyphicon '+('glyphicon-'+(validity[18]?'ok':'remove'))"></span>
+				</button>
+				<div class="child id labels"><span>{{choice.id}}</span></div>
+				<div class="child values spandiv"><span>{{choice.prrec}}</span></div>
+				<div class="child values spandiv"><span>{{choice.prprize}}</span></div>
+				<div class="child values spandiv"><span>{{choice.prinst}}</span></div>
+				<div class="child values spandiv"><span>{{choice.prdate}}</span></div>
+			</div>
+		</div>
+		<hr>
+		<div class="form-group">
+			<center>
+				<h2><u>Section 6: Outside activities</u></h2>
+				<h3>Industry collaborations</h3>
+			</center>
+			<div class="parent">
+				<div class="child id labels"><span class="glyphicon glyphicon-exclamation-sign"></span></div>
+				<div class="child id labels"><span>ID</span></div>
+				<div class="child labels"><span>Company</span></div>
+				<div class="child labels"><span>Nature</span></div>
+			</div>
+			<div class="parent" data-ng-repeat="choice in forms.icollab">
+				<button class="btn nocursor id" ng-class="'btn-'+(validity[19]?'success':'danger')">
+					<span ng-class="'glyphicon '+('glyphicon-'+(validity[19]?'ok':'remove'))"></span>
+				</button>
+				<div class="child id labels"><span>{{choice.id}}</span></div>
+				<div class="child values spandiv"><span>{{choice.icomp}}</span></div>
+				<div class="child values spandiv"><span>{{choice.inature}}</span></div>
+			</div>
+		</div>
+		<hr>
+		<div class="form-group">
+			<center>
+				<h2><u>Section 7: Additional</u></h2>
+				<h3>Additional</h3>
+			</center>
+			<div class="parent">
+				<div class="child values spandiv"><span class="empty">{{forms.additional}}</span></div>
+			</div>
+		</div>
+	</form>
+	{{response.data}}
+</div>

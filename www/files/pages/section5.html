@@ -1,0 +1,97 @@
+<center>
+	<h1 id="header">Section 5: Achievements</h1>
+</center>
+<br>
+<div class="well well-lg">
+	<form class="form-horizontal section1" role="form">
+		<div class="form-group">
+			<h3>Best paper awards
+				<small class="text-muted">For each item, indicate authors of the awarded article, title of the article, awarding conference or journal, exact wording of award, date.</small>
+			</h3>
+		</div>
+		<hr>
+		<div class="form-group">
+			<div class="parent">
+				<div class="child id labels"><span class="glyphicon glyphicon-exclamation-sign"></span></div>
+				<div class="child id labels"><span>ID</span></div>
+				<div class="child labels"><span>Authors</span></div>
+				<div class="child labels"><span>Title</span></div>
+				<div class="child labels"><span>Awarding association</span></div>
+				<div class="child labels"><span>Award's exact wording</span></div>
+				<div class="child labels"><span>Date</span></div>
+				<label class="btn nocursor"><span class="glyphicon glyphicon-trash"></span></label>
+			</div>
+			<div class="parent" data-ng-repeat="choice in forms.awards">
+				<button class="btn nocursor id" ng-class="'btn-'+(validity[16]?'success':'danger')">
+					<span ng-class="'glyphicon '+('glyphicon-'+(validity[16]?'ok':'remove'))">{{checkValidity(16, check(choice))}}</span>
+				</button>
+				<div class="child id labels"><span>{{choice.id}}</span></div>
+				<div class="child"><input id="awauthor" type="text" ng-model="choice.awauthor" class="form-control" name="awauthor" placeholder="Mandatory"></div>
+				<div class="child"><input id="awtitle" type="text" ng-model="choice.awtitle" class="form-control" name="awtitle" placeholder="Mandatory"></div>
+				<div class="child"><input id="awassoc" type="text" ng-model="choice.awassoc" class="form-control" name="awassoc" placeholder="Mandatory"></div>
+				<div class="child"><input id="awwording" type="text" ng-model="choice.awwording" class="form-control" name="awwording" placeholder="Mandatory"></div>
+				<div class="child last-child"><input id="awdate" type="text" ng-model="choice.awdate" class="form-control" name="awdate" placeholder="Mandatory"></div>
+				<button class="btn btn-danger" ng-disabled="choice.id==1" ng-click="removeAw(choice.id)"><span class="glyphicon glyphicon-trash"></span></button>
+			</div>
+			<button class="btn btn-success pull-right" ng-click="addAw()"><span class="glyphicon glyphicon-plus"></span></button>
+		</div>
+		<hr>
+		<div class="form-group">
+			<h3>Memberships
+				<small class="text-muted">Membership in academies, international working groups (for example IFIP or ACM), standards committees (e.g. ISO, Ecma) etc.</small>
+				<small class="text-muted">For each item, indicate name of member, date of membership.</small>
+			</h3>
+		</div>
+		<hr>
+		<div class="form-group">
+			<div class="parent">
+				<div class="child id labels"><span class="glyphicon glyphicon-exclamation-sign"></span></div>
+				<div class="child id labels"><span>ID</span></div>
+				<div class="child labels"><span>Name</span></div>
+				<div class="child labels"><span>Date</span></div>
+				<label class="btn nocursor"><span class="glyphicon glyphicon-trash"></span></label>
+			</div>
+			<div class="parent" data-ng-repeat="choice in forms.member">
+				<button class="btn nocursor id" ng-class="'btn-'+(validity[17]?'success':'danger')">
+					<span ng-class="'glyphicon '+('glyphicon-'+(validity[17]?'ok':'remove'))">{{checkValidity(17, check(choice))}}</span>
+				</button>
+				<div class="child id labels"><span>{{choice.id}}</span></div>
+				<div class="child"><input id="memname" type="text" ng-model="choice.memname" class="form-control" name="memname" placeholder="Mandatory"></div>
+				<div class="child last-child"><input id="memdate" type="text" ng-model="choice.memdate" class="form-control" name="memdate" placeholder="Mandatory"></div>
+				<button class="btn btn-danger" ng-disabled="choice.id==1" ng-click="removeMem(choice.id)"><span class="glyphicon glyphicon-trash"></span></button>
+			</div>
+			<button class="btn btn-success pull-right" ng-click="addMem()"><span class="glyphicon glyphicon-plus"></span></button>
+		</div>
+		<hr>
+		<div class="form-group">
+			<h3>Prizes
+				<small class="text-muted">List prizes received during reporting period.</small>
+				<small class="text-muted">For each item, indicate recipient, name of prize, granting institution, date.</small>
+			</h3>
+		</div>
+		<hr>
+		<div class="form-group">
+			<div class="parent">
+				<div class="child id labels"><span class="glyphicon glyphicon-exclamation-sign"></span></div>
+				<div class="child id labels"><span>ID</span></div>
+				<div class="child labels"><span>Recipient</span></div>
+				<div class="child labels"><span>Prize</span></div>
+				<div class="child labels"><span>Institution</span></div>
+				<div class="child labels"><span>Date</span></div>
+				<label class="btn nocursor"><span class="glyphicon glyphicon-trash"></span></label>
+			</div>
+			<div class="parent" data-ng-repeat="choice in forms.prizes">
+				<button class="btn nocursor id" ng-class="'btn-'+(validity[18]?'success':'danger')">
+					<span ng-class="'glyphicon '+('glyphicon-'+(validity[18]?'ok':'remove'))">{{checkValidity(18, check(choice))}}</span>
+				</button>
+				<div class="child id labels"><span>{{choice.id}}</span></div>
+				<div class="child"><input id="prrec" type="text" ng-model="choice.prrec" class="form-control" name="prrec" placeholder="Mandatory"></div>
+				<div class="child"><input id="prprize" type="text" ng-model="choice.prprize" class="form-control" name="prprize" placeholder="Mandatory"></div>
+				<div class="child"><input id="prinst" type="text" ng-model="choice.prinst" class="form-control" name="prinst" placeholder="Mandatory"></div>
+				<div class="child last-child"><input id="prdate" type="text" ng-model="choice.prdate" class="form-control" name="prdate" placeholder="Mandatory"></div>
+				<button class="btn btn-danger" ng-disabled="choice.id==1" ng-click="removePri(choice.id)"><span class="glyphicon glyphicon-trash"></span></button>
+			</div>
+			<button class="btn btn-success pull-right" ng-click="addPri()"><span class="glyphicon glyphicon-plus"></span></button>
+		</div>
+	</form>
+</div>

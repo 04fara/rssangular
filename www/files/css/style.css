@@ -1,0 +1,262 @@
+@font-face {
+	font-family: "SF";
+	src: url(../fonts/sf.ttf) format("truetype");
+}
+
+html * {
+	font-family: "SF";
+}
+
+body {
+	background-image: url("../img/background.jpg");
+	background-size: cover;
+	min-height: 100vh;
+	min-width: 99vw;
+	max-width: 99vw;
+	padding-top: 60px;
+	padding-bottom: 130px;
+}
+
+a {
+	text-decoration: none !important;
+}
+
+input:focus,
+a:focus {
+	outline: none;
+}
+
+#logo {
+	display: block;
+	margin: auto;
+}
+
+#header {
+	color: white;
+}
+
+.mainbtn {
+	color: #31302B;
+	padding: 12px 17px;
+	margin: 25px;
+	border: 3px solid #31302B;
+	font-size: 14px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	border-radius: 2px;
+	display: inline-block;
+	text-align: center;
+	cursor: pointer;
+	box-shadow: inset 0 0 0 0 #31302B;
+	-webkit-transition: all ease 0.8s;
+	-moz-transition: all ease 0.8s;
+	transition: all ease 0.8s;
+}
+
+.mainbtn:hover {
+	box-shadow: inset 0 100px 0 0 #31302B;
+	color: white;
+}
+
+.navbar-fixed-top .navbar-brand {
+	background: url(../img/logo2.png) center / contain no-repeat;
+	width: 200px;
+	transform: translateX(-50%);
+	left: 50%;
+	position: absolute;
+}
+
+.navbar-nav,
+.navbar-header,
+.navbar-nav>li {
+	float: none;
+}
+
+.navbar-toggle {
+	margin-bottom: 0px !important;
+	display: block;
+}
+
+.navbar-collapse.collapse {
+	display: none !important;
+}
+
+.navbar-collapse.collapse.in,
+.child .label {
+	display: block !important;
+}
+
+.navbar-center {
+	position: relative;
+	width: 100%;
+	text-align: center;
+	margin: auto;
+}
+
+.navbar-fixed-top .navbar-collapse,
+.navbar-fixed-bottom .navbar-collapse {
+	max-height: 500px;
+}
+
+.hover a {
+	-webkit-filter: brightness(0%);
+	filter: brightness(0%);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+
+.hover a:hover {
+	-webkit-filter: brightness(100%);
+	filter: brightness(100%);
+}
+
+.nocursor {
+	pointer-events: none;
+	cursor: default !important;
+}
+
+.well {
+	padding-left: 40px;
+	padding-right: 40px;
+}
+
+.section1 .input-group:not(.date) .input-group-addon:not(.success):not(.danger):not(.email) {
+	text-align: left;
+	min-width: 180px;
+}
+
+.section2 .input-group-addon:not(.success):not(.danger) {
+	text-align: left;
+	min-width: 200px;
+}
+
+.section2 .form-group {
+	margin-bottom: 10px !important;
+}
+
+.section4 .input-group-addon:not(.success):not(.danger) {
+	text-align: left;
+	min-width: 240px;
+}
+
+hr,
+.form-group hr {
+	border-top: 1px solid #ccc !important;
+	margin-top: 15px !important;
+	margin-bottom: 15px !important;
+}
+
+.input-group-addon.info {
+	color: white;
+	background-color: rgb(57, 179, 215);
+	border-color: rgb(38, 154, 188);
+}
+
+.input-group-addon.success {
+	color: white;
+	background-color: rgb(92, 184, 92);
+	border-color: rgb(76, 174, 76);
+}
+
+.input-group-addon.danger {
+	color: white;
+	background-color: rgb(217, 83, 79);
+	border-color: rgb(212, 63, 58);
+}
+
+.glyph,
+ul.dropdown-menu li,
+ul.pagination li {
+	cursor: pointer;
+}
+
+.parent {
+	text-align: center;
+	margin: 0px;
+	width: 100%;
+	max-width: 100%;
+	padding: 0px;
+	padding-bottom: 5px;
+	padding-top: -10px;
+	display: flex;
+	float: left;
+}
+
+.child {
+	list-style-type: none;
+	width: inherit;
+	max-width: inherit;
+}
+
+.parent .child.labels {
+	font-weight: bold;
+	line-height: 30px;
+	background-color: #eee;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+.parent .child .label.labels {
+	min-height: 100%;
+	font-weight: bold;
+	line-height: 30px;
+}
+
+.parent .child.values {
+	line-height: 30px;
+	background-color: white;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+.parent .child.id {
+	min-width: 35px;
+	max-width: 35px;
+}
+
+.parent .btn.nocursor.id {
+	padding: 0px;
+	min-width: 35px;
+	max-width: 35px;
+	margin-right: 5px;
+}
+
+.child:not(:last-child) {
+	line-height: 25px;
+	margin-right: 5px;
+}
+
+.parent:not(:glyphicon) span {
+	line-height: 25px;
+	margin-right: 5px;
+}
+
+.parent span:not(:glyphicon) {
+	max-height: 100%;
+	font-size: 12px;
+	width: 100px;
+	padding-top: 11px;
+	padding-bottom: 0px !important;
+}
+
+.parent label {
+	background-color: #eee;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+.parent .glyphicon {
+	max-height: 100%;
+	marging-left: 0px !important;
+}
+
+.empty:empty:before {
+	content: "\200b";
+}
+
+.spandiv {
+	white-space: no-wrap;
+	overflow-x: hidden;
+	max-width: 100%;
+}

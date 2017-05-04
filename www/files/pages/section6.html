@@ -1,0 +1,33 @@
+<center>
+	<h1 id="header">Section 6: Outside activities</h1>
+</center>
+<br>
+<div class="well well-lg">
+	<form class="form-horizontal section1" role="form">
+		<div class="form-group">
+			<h3>Industry collaborations
+				<small class="text-muted">For each item, list company and nature of collaboration.</small>
+			</h3>
+		</div>
+		<hr>
+		<div class="form-group">
+			<div class="parent">
+				<div class="child id labels"><span class="glyphicon glyphicon-exclamation-sign"></span></div>
+				<div class="child id labels"><span>ID</span></div>
+				<div class="child labels"><span>Company</span></div>
+				<div class="child labels"><span>Nature</span></div>
+				<label class="btn nocursor"><span class="glyphicon glyphicon-trash"></span></label>
+			</div>
+			<div class="parent" data-ng-repeat="choice in forms.icollab">
+				<button class="btn nocursor id" ng-class="'btn-'+(validity[19]?'success':'danger')">
+					<span ng-class="'glyphicon '+('glyphicon-'+(validity[19]?'ok':'remove'))">{{checkValidity(19, check(choice))}}</span>
+				</button>
+				<div class="child id labels"><span>{{choice.id}}</span></div>
+				<div class="child"><input id="icomp" type="text" ng-model="choice.icomp" class="form-control" name="icomp" placeholder="Mandatory"></div>
+				<div class="child last-child"><input id="inature" type="text" ng-model="choice.inature" class="form-control" name="inature" placeholder="Mandatory"></div>
+				<button class="btn btn-danger" ng-disabled="choice.id==1" ng-click="removeIc(choice.id)"><span class="glyphicon glyphicon-trash"></span></button>
+			</div>
+			<button class="btn btn-success pull-right" ng-click="addIc()"><span class="glyphicon glyphicon-plus"></span></button>
+		</div>
+	</form>
+</div>

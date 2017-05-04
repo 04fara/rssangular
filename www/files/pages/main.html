@@ -1,0 +1,18 @@
+<img id="logo" src="files/img/logo1.png" style="top: 150px;position: relative;">
+	<!--h1 id="header">Report Submitting System (RSS)</h1-->
+	<br>
+<div class="well well-lg" style="top: 150px;position: relative; margin-bottom: 100px;">
+	<div>
+		<center>
+			<h1>Are you a User or an Administrator?</h1>
+			<hr>
+			<div>
+				<a ng-click="resetData()" href="section1" class="mainbtn" style="margin-right: 100px;">User</a>
+				<a ng-click="resetData(); getLabsList();" href="admin" class="mainbtn">Administrator</a>
+			</div>
+			<div ng-show="submitted">
+				<hr> Successful submission!
+			</div>
+		</center>
+	</div>
+</div>

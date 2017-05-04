@@ -1,0 +1,154 @@
+<center>
+	<h1 id="header">Section 3: Research</h1>
+</center>
+<br>
+<div class="well well-lg">
+	<form class="form-horizontal section1" role="form">
+		<div class="form-group">
+			<h3>Grants
+				<small class="text-muted">For each item, list: title of project; granting agency; period covered by grant; amount.</small>
+			</h3>
+		</div>
+		<hr>
+		<div class="form-group">
+			<div class="parent">
+				<div class="child id labels"><span class="glyphicon glyphicon-exclamation-sign"></span></div>
+				<div class="child id labels"><span>ID</span></div>
+				<div class="child labels"><span>Title</span></div>
+				<div class="child labels"><span>Granting agency</span></div>
+				<div class="child labels"><span>Period</span></div>
+				<div class="child labels"><span>Amount</span></div>
+				<label class="btn nocursor"><span class="glyphicon glyphicon-trash"></span></label>
+			</div>
+			<div class="parent" data-ng-repeat="choice in forms.grants">
+				<button class="btn nocursor id" ng-class="'btn-'+(validity[11]?'success':'danger')">
+					<span ng-class="'glyphicon '+('glyphicon-'+(validity[11]?'ok':'remove'))">{{checkValidity(11, check(choice))}}</span>
+				</button>
+				<div class="child id labels"><span>{{choice.id}}</span></div>
+				<div class="child"><input id="gratitle" type="text" ng-model="choice.gratitle" class="form-control" name="gratitle" placeholder="Mandatory"></div>
+				<div class="child"><input id="graagency" type="text" ng-model="choice.graagency" class="form-control" name="graagency" placeholder="Mandatory"></div>
+				<div class="child"><input id="graperiod" type="text" ng-model="choice.graperiod" class="form-control" name="graperiod" placeholder="Mandatory"></div>
+				<div class="child last-child"><input id="graamount" type="text" ng-model="choice.graamount" class="form-control" name="graamount" placeholder="Mandatory"></div>
+				<button class="btn btn-danger" ng-disabled="choice.id==1" ng-click="removeGra(choice.id)"><span class="glyphicon glyphicon-trash"></span></button>
+			</div>
+			<button class="btn btn-success pull-right" ng-click="addGra()"><span class="glyphicon glyphicon-plus"></span></button>
+		</div>
+		<hr>
+		<div class="form-group">
+			<h3>Research projects
+				<small class="text-muted">Include all significant research topics in which members of your unit are involved, whether or not supported by a grant.</small>
+				<small class="text-muted">For each item, list: title of project; Innopolis University personnel involved; external personnel involved if any; start date of project; expected end date; sources of financing.</small>
+			</h3>
+		</div>
+		<hr>
+		<div class="form-group">
+			<div class="parent">
+				<div class="child id labels"><span class="glyphicon glyphicon-exclamation-sign"></span></div>
+				<div class="child id labels"><span>ID</span></div>
+				<div class="child labels"><span>Title</span></div>
+				<div class="child labels"><span>IU personnel</span></div>
+				<div class="child labels"><span>External personnel</span></div>
+				<div class="child labels"><span>Start date</span></div>
+				<div class="child labels"><span>End date</span></div>
+				<div class="child labels"><span>Financing</span></div>
+				<label class="btn nocursor"><span class="glyphicon glyphicon-trash"></span></label>
+			</div>
+			<div class="parent" data-ng-repeat="choice in forms.rprojects">
+				<button class="btn nocursor id" ng-class="'btn-'+(validity[12]?'success':'danger')">
+					<span ng-class="'glyphicon '+('glyphicon-'+(validity[12]?'ok':'remove'))">{{checkValidity(12, check(choice))}}</span>
+				</button>
+				<div class="child id labels"><span>{{choice.id}}</span></div>
+				<div class="child"><input id="rptitle" type="text" ng-model="choice.rptitle" class="form-control" name="rptitle" placeholder="Mandatory"></div>
+				<div class="child"><input id="rpinno" type="text" ng-model="choice.rpinno" class="form-control" name="rpinno" placeholder="Mandatory"></div>
+				<div class="child"><input id="rpext" type="text" ng-model="choice.rpext" class="form-control" name="rpext" placeholder="Mandatory"></div>
+				<div class="child"><input id="rpstart" type="text" ng-model="choice.rpstart" class="form-control" name="rpstart" placeholder="Mandatory"></div>
+				<div class="child"><input id="rpend" type="text" ng-model="choice.rpend" class="form-control" name="rpend" placeholder="Mandatory"></div>
+				<div class="child last-child"><input id="rpinvest" type="text" ng-model="choice.rpinvest" class="form-control" name="rpinvest" placeholder="Mandatory"></div>
+				<button class="btn btn-danger" ng-disabled="choice.id==1" ng-click="removeRp(choice.id)"><span class="glyphicon glyphicon-trash"></span></button>
+			</div>
+			<button class="btn btn-success pull-right" ng-click="addRp()"><span class="glyphicon glyphicon-plus"></span></button>
+		</div>
+		<hr>
+		<div class="form-group">
+			<h3>Research collaborations
+				<small class="text-muted">For each item, indicate: country of institution; name of institution (and department or unit if relevant); name of principal contact and any other important contacts; nature of collaboration.</small>
+			</h3>
+		</div>
+		<hr>
+		<div class="form-group">
+			<div class="parent">
+				<div class="child id labels"><span class="glyphicon glyphicon-exclamation-sign"></span></div>
+				<div class="child id labels"><span>ID</span></div>
+				<div class="child labels"><span>Country</span></div>
+				<div class="child labels"><span>Institution</span></div>
+				<div class="child labels"><span>Principal</span></div>
+				<div class="child labels"><span>Nature of collaboration</span></div>
+				<label class="btn nocursor"><span class="glyphicon glyphicon-trash"></span></label>
+			</div>
+			<div class="parent" data-ng-repeat="choice in forms.rcollab">
+				<button class="btn nocursor id" ng-class="'btn-'+(validity[13]?'success':'danger')">
+					<span ng-class="'glyphicon '+('glyphicon-'+(validity[13]?'ok':'remove'))">{{checkValidity(13, check(choice))}}</span>
+				</button>
+				<div class="child id labels"><span>{{choice.id}}</span></div>
+				<div class="child"><input id="rccountry" type="text" ng-model="choice.rccountry" class="form-control" name="rccountry" placeholder="Mandatory"></div>
+				<div class="child"><input id="rcinstitution" type="text" ng-model="choice.rcinstitution" class="form-control" name="rcinstitution" placeholder="Mandatory"></div>
+				<div class="child"><input id="rcprincipal" type="text" ng-model="choice.rcprincipal" class="form-control" name="rcprincipal" placeholder="Mandatory"></div>
+				<div class="child last-child"><input id="rcnature" type="text" ng-model="choice.rcnature" class="form-control" name="rcnature" placeholder="Mandatory"></div>
+				<button class="btn btn-danger" ng-disabled="choice.id==1" ng-click="removeRc(choice.id)"><span class="glyphicon glyphicon-trash"></span></button>
+			</div>
+			<button class="btn btn-success pull-right" ng-click="addRc()"><span class="glyphicon glyphicon-plus"></span></button>
+		</div>
+		<hr>
+		<div class="form-group">
+			<h3>Conference publications
+				<small class="text-muted">Indicate all conference publications of which members of the unit are authors or coauthors. Use standard style for scientific bibliography entries.</small>
+			</h3>
+		</div>
+		<hr>
+		<div class="form-group">
+			<div class="parent">
+				<div class="child id labels"><span class="glyphicon glyphicon-exclamation-sign"></span></div>
+				<div class="child id labels"><span>ID</span></div>
+				<div class="child labels"><span>Authors</span></div>
+				<div class="child labels"><span>Publication</span></div>
+				<label class="btn nocursor"><span class="glyphicon glyphicon-trash"></span></label>
+			</div>
+			<div class="parent" data-ng-repeat="choice in forms.conference">
+				<button class="btn nocursor id" ng-class="'btn-'+(validity[14]?'success':'danger')">
+					<span ng-class="'glyphicon '+('glyphicon-'+(validity[14]?'ok':'remove'))">{{checkValidity(14, check(choice))}}</span>
+				</button>
+				<div class="child id labels"><span>{{choice.id}}</span></div>
+				<div class="child"><input id="confauthor" type="text" ng-model="choice.confauthor" class="form-control" name="confauthor" placeholder="Mandatory"></div>
+				<div class="child last-child"><input id="confpubl" type="text" ng-model="choice.confpubl" class="form-control" name="confpubl" placeholder="Mandatory"></div>
+				<button class="btn btn-danger" ng-disabled="choice.id==1" ng-click="removeConf(choice.id)"><span class="glyphicon glyphicon-trash"></span></button>
+			</div>
+			<button class="btn btn-success pull-right" ng-click="addConf()"><span class="glyphicon glyphicon-plus"></span></button>
+		</div>
+		<hr>
+		<div class="form-group">
+			<h3>Journal publications
+				<small class="text-muted">Indicate all journal publications of which members of the unit are authors or coauthors. Use standard style for scientific bibliography entries.</small>
+			</h3>
+		</div>
+		<hr>
+		<div class="form-group">
+			<div class="parent">
+				<div class="child id labels"><span class="glyphicon glyphicon-exclamation-sign"></span></div>
+				<div class="child id labels"><span>ID</span></div>
+				<div class="child labels"><span>Authors</span></div>
+				<div class="child labels"><span>Publication</span></div>
+				<label class="btn nocursor"><span class="glyphicon glyphicon-trash"></span></label>
+			</div>
+			<div class="parent" data-ng-repeat="choice in forms.journal">
+				<button class="btn nocursor id" ng-class="'btn-'+(validity[15]?'success':'danger')">
+					<span ng-class="'glyphicon '+('glyphicon-'+(validity[15]?'ok':'remove'))">{{checkValidity(15, check(choice))}}</span>
+				</button>
+				<div class="child id labels"><span>{{choice.id}}</span></div>
+				<div class="child"><input id="jauthor" type="text" ng-model="choice.jauthor" class="form-control" name="jauthor" placeholder="Mandatory"></div>
+				<div class="child last-child"><input id="jpubl" type="text" ng-model="choice.jpubl" class="form-control" name="jpubl" placeholder="Mandatory"></div>
+				<button class="btn btn-danger" ng-disabled="choice.id==1" ng-click="removeJ(choice.id)"><span class="glyphicon glyphicon-trash"></span></button>
+			</div>
+			<button class="btn btn-success pull-right" ng-click="addJ()"><span class="glyphicon glyphicon-plus"></span></button>
+		</div>
+	</form>
+</div>

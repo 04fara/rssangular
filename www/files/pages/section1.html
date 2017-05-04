@@ -1,0 +1,72 @@
+<center>
+	<h1 id="header">Section 1: General Information</h1>
+</center>
+<br>
+<div class="well well-lg">
+	<form name="section1" class="form-horizontal section1" role="form" novalidate>
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon">Name of Unit</span>
+				<input type="text" name="unitname" ng-model="forms.unitname" id="unitname" class="form-control" placeholder="Software development lab" required>
+				<span ng-class="'input-group-addon '+(validity[0]?'success':'danger')">
+					<span ng-class="'glyphicon '+('glyphicon-'+(validity[0]?'ok':'remove'))">{{checkValidity(0, section1.unitname.$valid)}}</span>
+				</span>
+			</div>
+			<small class="form-text text-muted">Official name, for example name of laboratory.</small>
+		</div>
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon">Head of Unit</span>
+				<input type="text" name="unithead" ng-model="forms.unithead" id="unithead" class="form-control" placeholder="Vasya Pupkin" required>
+				<span ng-class="'input-group-addon '+(validity[1]?'success':'danger')">
+					<span ng-class="'glyphicon '+('glyphicon-'+(validity[1]?'ok':'remove'))">{{checkValidity(1, section1.unithead.$valid)}}</span>
+				</span>
+			</div>
+			<small class="form-text text-muted">Person's name who is responsible for this unit.</small>
+		</div>
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon">Innopolis email of Head</span>
+				<input type="text" name="innomail" ng-model="forms.innomail" id="innomail" class="form-control" placeholder="v.pupkin" required>
+				<span class="input-group-addon email">@innopolis.ru</span>
+				<span ng-class="'input-group-addon '+(validity[2]?'success':'danger')">
+					<span ng-class="'glyphicon '+('glyphicon-'+(validity[2]?'ok':'remove'))">{{checkValidity(2, section1.innomail.$valid)}}</span>
+				</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon">Personal email of Head</span>
+				<input type="email" name="mail" ng-model="forms.mail" id="mail" class="form-control" placeholder="v.pupkin@gmail.com" required>
+				<span ng-class="'input-group-addon '+(validity[3]?'success':'danger')">
+					<span ng-class="'glyphicon '+('glyphicon-'+(validity[3]?'ok':'remove'))">{{checkValidity(3, section1.mail.$valid)}}</span>
+				</span>
+			</div>
+		</div>
+		<div class="form-group" ng-class="!(validity[4]&&validity[5])?'has-error':'has-success'" ng-controller="DatesController as dates">
+			<div class="row">
+				<div class="col-xs-2">
+					<label style="margin-top: 7px;">Reporting period</label>
+				</div>
+				<div class="col-xs-5">
+					<div id="startdiv" class="input-group date" datetimepicker on-change="dates.update(startdate, enddate);forms.startdate=(startdate.format()|date:'dd/MM/yyyy')" ng-model="startdate" options="dates.optionsFrom">
+						<span class="input-group-addon">From</span>
+                        <input type="text" class="form-control" ng-model="forms.startdate" name="startdate" id="startdate" placeholder="01/01/2017" required>
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar glyph">{{checkValidity(4, section1.startdate.$valid)}}</span>
+                        </span>
+                    </div>
+				</div>
+				<div class="col-xs-5">
+					<div id="enddiv" class="input-group date" datetimepicker on-change="dates.update(startdate, enddate);forms.enddate=(enddate.format()|date:'dd/MM/yyyy')" ng-model="enddate" options="dates.optionsTo">
+						<span class="input-group-addon">Until</span>
+                        <input type="text" class="form-control" ng-model="forms.enddate" name="enddate" id="enddate" placeholder="02/01/2017" required>
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar glyph">{{checkValidity(5, section1.enddate.$valid)}}</span>
+                        </span>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
